@@ -5,11 +5,11 @@
 * @brief: Header file for Node class
 ********************************************************/
 
-#ifndef NODE_H
-#define NODE_H
+#ifndef DOUBLE_NODE_H
+#define DOUBLE_NODE_H
 
 template<typename T>
-class Node{
+class DoubleNode{
 	
 	/*******************************************************
 	* PUBLIC METHDOS
@@ -22,7 +22,7 @@ public:
 	* @post : Initializes Node class
 	* @return : Initialized Node
 	********************************************************/
-	Node();
+	DoubleNode();
 	
 	/*******************************************************
 	* @pre :  None
@@ -43,28 +43,28 @@ public:
 	* @post : return pointer to previous node
 	* @return : Initialized Node
 	********************************************************/
-	Node<T>* getPrevious() const;
+	DoubleNode<T>* getPrevious() const;
 	
 	/*******************************************************
 	* @pre :  None
 	* @post : changes pointer to previous node
 	* @return : void
 	********************************************************/
-	void setPrevious(Node<T>* val);
+	void setPrevious(DoubleNode<T>* val);
 	
 	/*******************************************************
 	* @pre :  None
 	* @post : return pointer to next node
 	* @return : Initialized Node
 	********************************************************/
-	Node<T>* getNext() const;
+	DoubleNode<T>* getNext() const;
 	
 	/*******************************************************
 	* @pre :  None
 	* @post : changes pointer to next node
 	* @return : void
 	********************************************************/
-	void setNext(Node<T>* val);
+	void setNext(DoubleNode<T>* val);
 	
 	
 	/*******************************************************
@@ -81,13 +81,13 @@ private:
 	/*******************************************************
 	*Pointer to previous Node
 	********************************************************/
-	Node<T>* m_previous;
+	DoubleNode<T>* m_previous;
 	
 	/*******************************************************
 	*Value stored inside Node
 	********************************************************/
-	Node<T>* m_next;
+	DoubleNode<T>* m_next;
 	
 };
-#include "Node.hpp"
+#include "DoubleNode.hpp"
 #endif

@@ -11,9 +11,10 @@
 
 #include <stdexcept>
 #include <iostream>
+#include <vector>
 
 //User-defined libraries
-#include "Node.h"
+#include "DoubleNode.h"
 
 
 template<typename T>
@@ -71,22 +72,25 @@ public:
 	* @pre :  None
 	* @post : deletes first node containing passed value
 	* @return : Initialized Node
+	* @throw : std::runtime_error
 	********************************************************/
-	bool removeFront();
+	void removeFront() throw (std::runtime_error);
 	
 	/*******************************************************
 	* @pre :  None
 	* @post : deletes first node containing passed value
 	* @return : Initialized Node
+	* @throw : std::runtime_error
 	********************************************************/
-	bool removeBack();
+	void removeBack() throw (std::runtime_error);
 	
 	/*******************************************************
 	* @pre :  None
 	* @post : deletes first node containing passed value
 	* @return : Initialized Node
+	* @throw : std::runtime_error
 	********************************************************/
-	bool remove(T value);
+	void remove(T value) throw (std::runtime_error);
 	
 	/*******************************************************
 	* @pre :  None
@@ -109,14 +113,14 @@ public:
 	* @post : returns pointer to first node that contains value
 	* @return : Node<T>*
 	********************************************************/
-	Node<T>* find(T value) const;
+	DoubleNode<T>* find(T value) const;
 	
 	/*******************************************************
 	* @pre :  None
 	* @post : Assumes T is overloaded to be printable
 	* @return : void
 	********************************************************/
-	void printList() const;
+	std::vector<T> toVector() const;
 	
 	
 	
@@ -129,12 +133,12 @@ private:
 	/*******************************************************
 	*Pointer to front of list
 	********************************************************/
-	Node<T>* m_front;
+	DoubleNode<T>* m_front;
 	
 	/*******************************************************
 	*Pointer to back of list
 	********************************************************/
-	Node<T>* m_back;
+	DoubleNode<T>* m_back;
 	
 	/*******************************************************
 	*Size of list

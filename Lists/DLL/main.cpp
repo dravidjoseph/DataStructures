@@ -6,9 +6,9 @@
 ********************************************************/
 
 #include <iostream>
+#include <vector>
 
 #include "DoubleLinkedList.h"
-#include "Test.h"
 
 void printMenu()
 {
@@ -22,7 +22,6 @@ void printMenu()
 		<<	"7) remove specific value\n"
 		<<	"8) print list\n"
 		<<	"9) Quit\n"
-		<<	"10) Run Tests\n"
 		<< 	"Your choice: ";
 }
 
@@ -30,118 +29,162 @@ void printMenu()
 
 int main(){
 	
-	DoubleLinkedList<int>* dll = new DoubleLinkedList<int>();
-	bool flag = false;
 	int choice = 0;
-	int value = 0;
-	int search = 0;
+	int val = 0;
+	int val2 = 0;
+	bool flag = false;
+	std::vector<int> vec;
+	
+	DoubleLinkedList<int>* dll = new DoubleLinkedList<int>();
 	
 	while(!flag){
 		
 		printMenu();
+		
 		std::cin>>choice;
+	
+		switch(choice){
 		
-		std::cout<<"\nYou chose: "<<choice<<"\n";
+			case 1:
 		
-		if(choice == 1){
-			std::cout<<"Give a value: ";
-			std::cin>>value;
-			
-			dll->pushFront(value);
-			
-			std::cout<<value<<" added to the front of list.";
-		}
-		else if(choice == 2){
-			std::cout<<"Give a value: ";
-			std::cin>>value;
-			
-			dll->pushBack(value);
-			
-			std::cout<<value<<" added to the back of list.";
-		}
-		else if(choice == 3){
-			std::cout<<"Give a value to insert: ";
-			std::cin>>value;
-			
-			std::cout<<"Pick a value to insert behind: ";
-			std::cin>>search;
-			
-			std::cout<<"Attempting to insert "<<value<<" behind "<<search<<"\n";
-			
-			try{
-				dll->insertBehind(search,value);
-			}
-			catch(std::runtime_error& e){
-				std::cout<<e.what()<<std::endl;
-			}
+				std::cout<<"What value would you like to push to the front?";
+				std::cin>>val;
 				
-		}
-		else if(choice == 4){
-			std::cout<<"Give a value to insert: ";
-			std::cin>>value;
+				dll->pushFront(val);
+				
+				std::cout<<val<<" successfully added to the front of the list\n";
 			
-			std::cout<<"Pick a value to insert ahead of: ";
-			std::cin>>search;
-			
-			std::cout<<"Attempting to insert "<<value<<" ahead of "<<search<<"\n";
-			
-			try{
-				dll->insertAhead(search,value);
-			}
-			catch(std::runtime_error& e){
-				std::cout<<e.what()<<std::endl;
-			}
-		}
-		else if(choice == 5){
-			std::cout<<"Removing front node.";
-			if(dll->removeFront()){
-				std::cout<<"Front node removed.";
-			}
-			else{
-				std::cout<<"Removal failed.";
-			}
-			
-		}
-		else if(choice == 6){
-			std::cout<<"Removing back node.";
-			if(dll->removeBack()){
-				std::cout<<"Back node removed.";
-			}
-			else{
-				std::cout<<"Removal failed.";
-			}
-		}
-		else if(choice == 7){
-			std::cout<<"Give a value to remove: ";
-			std::cin>>value;
-			std::cout<<"You gave "<<value<<"\n";
-			
-			if(dll->remove(value)){
-				std::cout<<value<<" removed from list.";
-			}
-			else{
-				std::cout<<value<<" could not be removed from list.";
-			}
-		}
-		else if(choice == 8){
-			dll->printList();
-		}
-		else if(choice == 9){
-			std::cout<<"Program ending...";
-			flag = true;
-		}
-		else if(choice == 10){
-			Test myTest(std::cout);
-			myTest.runTests();
-		}
 		
-		else{
-			std::cout<<"Invalid choice.\n";
+			break;
+		
+			case 2:
+			
+				std::cout<<"What value would you like to push to the back?";
+				std::cin>>val;
+			
+				dll->pushBack(val);
+			
+				std::cout<<val<<" successfully added to the back of the list\n";
+		
+			break;
+		
+			case 3:
+			
+				std::cout<<"What value would you like to push?";
+				std::cin>>val;
+				std::cout<<"What value would you like to push it behind?";
+				std::cin>>val2;
+				
+				try{
+					dll->insertBehind(val,val2);
+					std::cout<<val<<" successfully added behind"<<val2<< " in the list\n";	
+				}
+				catch(std::runtime_error& e){
+					std::cout<<e.what()<<std::endl;
+				}
+			
+				
+		
+			break;
+		
+			case 4:
+			
+				std::cout<<"What value would you like to push?";
+				std::cin>>val;
+				std::cout<<"What value would you like to push it ahead of?";
+				std::cin>>val2;
+				
+				try{
+					dll->insertBehind(val,val2);
+					std::cout<<val<<" successfully added ahead of"<<val2<< " in the list\n";	
+				}
+				catch(std::runtime_error& e){
+					std::cout<<e.what()<<std::endl;
+				}
+			
+				
+		
+			break;
+		
+			case 5:
+			
+				try{
+					dll->removeFront();	
+					std::cout<<"Front of list removed";
+				}
+				catch(std::runtime_error& e){
+					std::cout<<e.what()<<std::endl;
+				}
+				
+				
+		
+		
+			break;
+		
+			case 6:
+			
+				try{
+					dll->removeBack();
+					std::cout<<"Back of list removed";	
+				}
+				catch(std::runtime_error& e){
+					std::cout<<e.what()<<std::endl;
+				}
+				
+				
+		
+			break;
+		
+			case 7:
+			
+				std::cout<<"What value would you like to remove?";
+				std::cin>>val;
+				
+				try{
+					dll->remove(val);
+					std::cout<<val<<" successfully removed from the list";	
+				}
+				catch(std::runtime_error& e){
+					std::cout<<e.what()<<std::endl;
+				}
+				
+				
+		
+			break;
+		
+			case 8:
+			
+				std::cout<<"Printing List...\n";
+				vec = dll->toVector();
+				
+				for(std::size_t i = 0; i < vec.size(); i++){
+					std::cout<<vec[i]<<" ";
+				}
+		
+			break;
+		
+			case 9:
+				
+			std::cout<<"Quitting...\n";
+			flag = true;
+			
+		
+			break;
+		
+			default:
+		
+				std::cout<<"Invalid choice.\n";
+			
+			break;
 		}
+	
 	}
+	
+	
 	
 	delete dll;
 	dll = nullptr;
 	
+	return 0;
 	
 }
