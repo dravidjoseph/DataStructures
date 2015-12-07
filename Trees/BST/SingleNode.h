@@ -5,11 +5,11 @@
 * @brief : Header file for Node class
 ********************************************************/
 
-#ifndef SINGLENODE_H
-#define SINGLENODE_H
+#ifndef NODE_H
+#define NODE_H
 
 template<typename T>
-class SingleNode{
+class Node<T>{
 	
 	/*******************************************************
 	* PUBLIC METHDOS
@@ -21,14 +21,14 @@ public:
 	* @post : Initializes Node class
 	* @return : Initialized Node
 	********************************************************/
-	SingleNode();
+	Node();
 	
 	/*******************************************************
 	* @pre :  valid integer value
 	* @post : None
 	* @return : void
 	********************************************************/
-	void setValue(T val);
+	void setValue(int val);
 	
 	/*******************************************************
 	* @pre :  None
@@ -42,14 +42,14 @@ public:
 	* @post : sets Node pointer to valid node reference
 	* @return : void
 	********************************************************/
-	void setNext(SingleNode<T>* prev);
+	void setNext(Node<T>* prev);
 	
 	/*******************************************************
 	* @pre :  None
 	* @post : Valid Node reference
 	* @return : Node*
 	********************************************************/
-	SingleNode<T>* getNext() const;
+	Node<T>* getNext() const;
 	
 	
 	
@@ -67,7 +67,7 @@ private:
 	/*******************************************************
 	* Pointer to next node
 	********************************************************/
-	SingleNode<T>* m_next;
+	Node<T>* m_next;
 	
 	
 };

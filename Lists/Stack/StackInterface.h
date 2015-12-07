@@ -1,75 +1,76 @@
 /*******************************************************
-* @file : Node.h
+* @file : StackInterface.h
 * @author : Dravid Joseph
-* @date : 9/14/15
-* @brief : Header file for Node class
+* @date : 9/28/15
+* @brief : Stack Interface
 ********************************************************/
 
-#ifndef SINGLENODE_H
-#define SINGLENODE_H
+#ifndef STACK_INTERFACE_H
+#define STACK_INTERFACE_H
 
 template<typename T>
-class SingleNode{
+
+class StackInterface{
 	
 	/*******************************************************
-	* PUBLIC METHDOS
+	* PUBLIC METHODS
 	********************************************************/
-public:
+public: 
+	/*******************************************************
+	* @pre :  None
+	* @post : Deallocates stack
+	* @return : None
+	********************************************************/
+
+	virtual ~StackInterface() {};
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : Initializes Node class
-	* @return : Initialized Node
+	* @post : returns true if stack is empty, fasle otherwise
+	* @return : bool
 	********************************************************/
-	SingleNode();
+	
+	virtual bool isEmpty() const = 0;
 	
 	/*******************************************************
-	* @pre :  valid integer value
-	* @post : None
+	* @pre :  valid newEntry
+	* @post : pushes new entry onto stack
 	* @return : void
 	********************************************************/
-	void setValue(T val);
+	
+	virtual void push(const T newEntry) = 0;
 	
 	/*******************************************************
 	* @pre :  None
-	* @post : valid integer
-	* @return : integer value
+	* @post : removes value at top of stack, returning value
+	* @return : T
+	* @throw : PreconditionViolationException
 	********************************************************/
-	T getValue() const;
+	
+	virtual void pop() throw(PreconditionViolationException) = 0;
 	
 	/*******************************************************
-	* @pre :  Valid Node reference
-	* @post : sets Node pointer to valid node reference
+	* @pre :  None
+	* @post : returns value at top of stack
+	* @return : T
+	********************************************************/
+	
+	virtual T peek() const throw(PreconditionViolationException) = 0;
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : size of stack
+	* @return : int
+	********************************************************/
+	
+	virtual int size() const = 0;
+	
+	/*******************************************************
+	* @pre :  None
+	* @post : prints all node values in stack
 	* @return : void
 	********************************************************/
-	void setNext(SingleNode<T>* prev);
 	
-	/*******************************************************
-	* @pre :  None
-	* @post : Valid Node reference
-	* @return : Node*
-	********************************************************/
-	SingleNode<T>* getNext() const;
-	
-	
-	
-	/*******************************************************
-	* PRIVATE MEMBERS
-	********************************************************/
-private: 
-	
-	/*******************************************************
-	*Value stored inside Node
-	********************************************************/
-	T m_value;
-	
-	
-	/*******************************************************
-	* Pointer to next node
-	********************************************************/
-	SingleNode<T>* m_next;
-	
-	
+	virtual std::vector<T> toVector() const = 0;
 };
-#include "SingleNode.hpp"
 #endif
